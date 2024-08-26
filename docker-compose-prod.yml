@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    restart: always
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env/env.prod
+    entrypoint: /home/demo/prod-start.sh
+#    volumes:
+#      - ./:/home/demo
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  db:
+    image: postgres:14
+    env_file:
+      - .env/env.prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - prod-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d prod_db -U postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+volumes:
+#  project:
+  prod-data:
+
