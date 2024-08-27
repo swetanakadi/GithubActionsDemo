@@ -33,13 +33,14 @@ jobs:
         envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
         envkey_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
         directory: .env
-        filename: env.dev
+        file_name: env.dev
         fail_on_empty: false
 
     - name: Check env file contents
       run: |
         ls -la .env
         echo ".env/env.dev created successfully"
+        cat .env/env.dev
 
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
