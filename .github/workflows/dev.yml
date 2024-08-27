@@ -42,14 +42,14 @@ jobs:
 
     - name: Debug secrets
       run: |
-        echo "DEBUG secret is set to ${{ secrets.DEBUG }}
-        echo "allowed hosts is set to ${{ secrets.ALLOWED_HOSTS }}
-        echo "secret key is set to ${{ secrets.SECRET_KEY }}
-        echo "pg db is set to ${{ secrets.POSTGRES_DB }}
-        echo "pg user is set to ${{ secrets.POSTGRES_USER }}
-        echo "pg host is set to ${{ secrets.POSTGRES_HOST }}
-        echo "pg password is set to ${{ secrets.POSTGRES_PASSWORD }}
-        echo "pg port is set to ${{ secrets.POSTGRES_PORT }}
+        echo "DEBUG secret is set to ${{ secrets.DEBUG }}"
+        echo "allowed hosts is set to ${{ secrets.ALLOWED_HOSTS }}"
+        echo "secret key is set to ${{ secrets.SECRET_KEY }}"
+        echo "pg db is set to ${{ secrets.POSTGRES_DB }}"
+        echo "pg user is set to ${{ secrets.POSTGRES_USER }}"
+        echo "pg host is set to ${{ secrets.POSTGRES_HOST }}"
+        echo "pg password is set to ${{ secrets.POSTGRES_PASSWORD }}"
+        echo "pg port is set to ${{ secrets.POSTGRES_PORT }}"
 
 #    - name: Set up Docker Buildx
 #      uses: docker/setup-buildx-action@v1
