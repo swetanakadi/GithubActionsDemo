@@ -16,9 +16,9 @@ jobs:
 
     - name: Make .env directory
       run: |
-        mkdir .env
-        touch .env/env.dev
-        echo "ls -la"
+        mkdir -p .env
+#        touch .env/env.dev
+#        echo "ls -la"
 
     - name: Create env file
       uses: SpicyPizza/create-envfile@v2.0
@@ -32,10 +32,14 @@ jobs:
         envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
         envkey_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-        filename: .env/env.dev
+        directory: .env
+        filename: env.dev
+        fail_on_empty: false
 
     - name: Check env file contents
-      run: cat .env/env.dev
+      run: |
+        ls -la .env
+        echo ".env/env.dev created successfully"
 
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
