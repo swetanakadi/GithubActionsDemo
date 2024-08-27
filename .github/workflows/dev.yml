@@ -17,8 +17,6 @@ jobs:
     - name: Make .env directory
       run: |
         mkdir -p .env
-#        touch .env/env.dev
-#        echo "ls -la"
 
     - name: Create env file
       uses: SpicyPizza/create-envfile@v2.0
@@ -42,5 +40,5 @@ jobs:
         echo ".env/env.dev created successfully"
         cat .env/env.dev
 
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the project using docker-compose
+      run: docker-compose up --build
