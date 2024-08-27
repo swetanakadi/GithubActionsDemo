@@ -1,0 +1,41 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Make .env directory
+      run: |
+        mkdir .env
+        touch env.dev
+        echo "ls -la"
+
+    - name: Create env file
+      uses: SpicyPizza/create-envfile@v2.0
+
+      with:
+        envkey_DEBUG: ${{ secrets.DEBUG }}
+        envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        envkey_ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+        envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+        envkey_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+        filename: .env/env.dev
+
+    - name: Check env file contents
+      run: cat .env/env.dev
+
+#    - name: Build the Docker image
+#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
