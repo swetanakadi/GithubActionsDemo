@@ -33,6 +33,6 @@ RUN mkdir .env
 COPY .env/env.dev  ./.env/env.dev
 
 # copy start app script and set to entrypoint
-COPY entrypoints/dev-start.sh ./
+COPY entrypoints/dev-start.sh ./dev-start.sh
 RUN chmod +x ./dev-start.sh
 #ENTRYPOINT ["/home/demo/dev-start.sh"]

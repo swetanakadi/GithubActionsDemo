@@ -4,6 +4,7 @@ services:
   web:
     restart: always
     build:
+      context: .
       dockerfile: "Dockerfile.dev"
     ports:
       - "8000:8000"
@@ -11,7 +12,9 @@ services:
       - .env/env.dev
     entrypoint: /home/demo/dev-start.sh
     volumes:
-      - .:/home/demo
+      - ./myapp:/home/demo/myapp
+      - ./setup:/home/demo/setup
+      - ./requirements:/home/demo/requirements
     depends_on:
       db:
         condition: service_healthy
@@ -33,5 +36,4 @@ services:
 
 
 volumes:
-  app:
   db-data:
