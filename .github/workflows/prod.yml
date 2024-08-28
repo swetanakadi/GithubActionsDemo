@@ -1,0 +1,43 @@
+name: Dockered CI for Prod Environment
+
+on:
+  push:
+    branches: ["prod"]
+  pull_request:
+    branches: ["prod"]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Make .env directory
+        run: mkdir -p .env
+
+      - name: Create env file
+        uses: SpicyPizza/create-envfile@v2.0
+
+        with:
+          envkey_DEBUG: ${{ secrets.DEBUG }}
+          envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          envkey_ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          envkey_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          directory: .env
+          file_name: env.prod
+          fail_on_empty: false
+
+      - name: Check env file creation
+        run: |
+          ls -la .env
+          echo ".env/env.prod created successfully"
+
+      - name: Build and run the project using docker-compose
+        run: docker compose --file docker-compose-prod.yml up --build -d
