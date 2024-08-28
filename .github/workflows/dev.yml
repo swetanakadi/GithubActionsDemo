@@ -39,18 +39,6 @@ jobs:
       run: |
         ls -la .env
         echo ".env/env.dev created successfully"
-        cat .env/env.dev
-
-    - name: Debug secrets
-      run: |
-        echo "DEBUG secret is set to ${{ secrets.DEBUG }}"
-        echo "allowed hosts is set to ${{ secrets.ALLOWED_HOSTS }}"
-        echo "secret key is set to ${{ secrets.SECRET_KEY }}"
-        echo "pg db is set to ${{ secrets.POSTGRES_DB }}"
-        echo "pg user is set to ${{ secrets.POSTGRES_USER }}"
-        echo "pg host is set to ${{ secrets.POSTGRES_HOST }}"
-        echo "pg password is set to ${{ secrets.POSTGRES_PASSWORD }}"
-        echo "pg port is set to ${{ secrets.POSTGRES_PORT }}"
 
     - name: Build and run the project using docker-compose
       run: docker compose up --build -d
