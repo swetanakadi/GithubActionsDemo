@@ -35,4 +35,5 @@ COPY .env/env.prod  ./.env/env.prod
 
 # copy start app script and set to entrypoint
 RUN chmod +x ./prod-start.sh
+
 #ENTRYPOINT ["/home/demo/prod-start.sh"]
