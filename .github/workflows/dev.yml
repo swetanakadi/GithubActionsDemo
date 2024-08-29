@@ -41,4 +41,4 @@ jobs:
         echo ".env/env.dev created successfully"
 
     - name: Build and run the project using docker-compose
-      run: docker compose up --build --abort-on-container-exit -d
+      run: docker compose up --build --abort-on-container-exit
