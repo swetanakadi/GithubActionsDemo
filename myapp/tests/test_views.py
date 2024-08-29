@@ -16,4 +16,4 @@ class TesDemoView(APITestCase):
         response = self.client.get(self.url)
         print(response.status_code)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json(), 'Hello from the server!')
+        self.assertEqual(response.json(), 'Hello from the server!!')
