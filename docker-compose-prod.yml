@@ -9,8 +9,6 @@ services:
     env_file:
       - .env/env.prod
     entrypoint: /home/demo/prod-start.sh
-#    volumes:
-#      - ./:/home/demo
     depends_on:
       db:
         condition: service_healthy

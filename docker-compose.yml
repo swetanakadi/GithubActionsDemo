@@ -34,6 +34,13 @@ services:
       timeout: 3s
       retries: 3
 
+  test:
+    build: .
+    command: ./dev-healthcheck.sh
+    depends_on:
+      db:
+        condition: service_healthy
+
 
 volumes:
   db-data:

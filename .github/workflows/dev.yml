@@ -40,5 +40,10 @@ jobs:
         ls -la .env
         echo ".env/env.dev created successfully"
 
+    - name: Build and run tests
+      run: |
+        docker-compose build
+        docker-compose run --rm test
+
     - name: Build and run the project using docker-compose
       run: docker compose up --build --abort-on-container-exit
